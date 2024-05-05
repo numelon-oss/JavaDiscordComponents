@@ -5,8 +5,6 @@ public class Colour {
     private int green = 0;
     private int blue = 0;
 
-    public Colour() {}
-
     // Get RGB (Discord Colour Integer)
     public int toRGB() {
         return (red << 16) + (green << 8) + blue;
