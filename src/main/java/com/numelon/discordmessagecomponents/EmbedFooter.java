@@ -2,7 +2,7 @@ package com.numelon.discordmessagecomponents;
 
 public class EmbedFooter {
     private String footer;
-    // TODO: Add timestamp obkect
+    // TODO: Add timestamp object
     private String timestamp;
     private String iconUrl;
 

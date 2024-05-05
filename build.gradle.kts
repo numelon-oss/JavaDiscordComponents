@@ -7,6 +7,8 @@
 
 plugins {
   kotlin("jvm") version "1.9.23"
+  /* Build a fat jar which contains all the required dependencies. This prevents those stupid annoying errors when you import the library and try to use absolutely anything from it and it says "not found" or some stupid thing */
+  id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 java {
