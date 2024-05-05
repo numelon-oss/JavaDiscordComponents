@@ -2,6 +2,10 @@ package com.numelon.discordmessagecomponents;
 
 import java.util.List;
 import java.util.Map;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -139,9 +143,20 @@ public class Embed {
         thumbnailMap.put("url", this.thumbnailUrl);
         embedMap.put("thumbnail", thumbnailMap);
 
-        
+        Map<String, String> authorMap = new HashMap<>();
+        authorMap.put("name", this.author.getAuthor());
+        authorMap.put("url", this.author.getUrl());
+        authorMap.put("icon_url", this.author.getIconUrl());
+        embedMap.put("author", authorMap);
+
+        Map<String, String> footerMap = new HashMap<>();
+        footerMap.put("text", this.footer.getFooter());
+        footerMap.put("icon_url", this.footer.getIconUrl());
+        embedMap.put("timestamp", this.footer.getTimestamp());
+        embedMap.put("footer", footerMap);
 
         // use gson to export this object to json
-        return "";
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return gson.toJson(embedMap);
     }
 }
