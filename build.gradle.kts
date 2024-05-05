@@ -9,6 +9,12 @@ plugins {
   kotlin("jvm") version "1.9.23"
 }
 
+java {
+  toolchain {
+    languageVersion.set(JavaLanguageVersion.of(21))
+  }
+}
+
 repositories {
   mavenCentral()
 }
