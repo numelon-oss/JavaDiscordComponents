@@ -36,7 +36,7 @@ I am actively working on null support. It's actually quite trivial really, but I
 In the meantime, just create empty objects.
 
 ## 📝 Examples
-### Example 1
+### Example 1: Full embed
 ```java
 // Imports
 import java.util.List;
@@ -101,3 +101,6 @@ This returns the following json string:
 Which looks like this:
 
 ![Embed example 1](/docs/readme/embed-example1.png)
+
+### Example 2: Using empty objects
+TODO
