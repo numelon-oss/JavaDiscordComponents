@@ -124,39 +124,86 @@ public class Embed {
     // Json serialisation for export
     public String toJson() {
         Map<String, Object> embedMap = new HashMap<>();
-        embedMap.put("title", this.title);
-        embedMap.put("description", this.description);
-        embedMap.put("url", this.url);
-        embedMap.put("color", this.embedColour.toRGB());
-
-        List<Map<String, String>> fieldsList = new ArrayList<>();
-        for (EmbedField field: this.fields) {
-            Map<String, String> fieldMap = new HashMap<>();
-            fieldMap.put("name", field.getTitle());
-            fieldMap.put("value", field.getValue());
-            
-            fieldsList.add(fieldMap);
+        if (this.title != null) {
+            embedMap.put("title", this.title);
         }
-        embedMap.put("fields", fieldsList);
 
-        Map<String, String> thumbnailMap = new HashMap<>();
-        thumbnailMap.put("url", this.thumbnailUrl);
-        embedMap.put("thumbnail", thumbnailMap);
+        if (this.description != null) {
+            embedMap.put("description", this.description);
+        }
 
-        Map<String, String> authorMap = new HashMap<>();
-        authorMap.put("name", this.author.getAuthor());
-        authorMap.put("url", this.author.getUrl());
-        authorMap.put("icon_url", this.author.getIconUrl());
-        embedMap.put("author", authorMap);
+        if (this.url != null) {
+            embedMap.put("url", this.url);
+        }
 
-        Map<String, String> footerMap = new HashMap<>();
-        footerMap.put("text", this.footer.getFooter());
-        footerMap.put("icon_url", this.footer.getIconUrl());
-        embedMap.put("timestamp", this.footer.getTimestamp());
-        embedMap.put("footer", footerMap);
+        if (this.embedColour != null) {
+            embedMap.put("color", this.embedColour.toRGB());
+        }
 
-        // use gson to export this object to json
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        return gson.toJson(embedMap);
+        if (this.fields != null && !this.fields.isEmpty()) {
+            List<Map<String, String>> fieldsList = new ArrayList<>();
+            for (EmbedField field: this.fields) {
+                Map<String, String> fieldMap = new HashMap<>();
+                fieldMap.put("name", field.getTitle());
+                fieldMap.put("value", field.getValue());
+            
+                fieldsList.add(fieldMap);
+            }
+            embedMap.put("fields", fieldsList);
+        }
+
+        if (this.thumbnailUrl != null) {
+            Map<String, String> thumbnailMap = new HashMap<>();
+            thumbnailMap.put("url", this.thumbnailUrl);
+            embedMap.put("thumbnail", thumbnailMap);
+        }
+
+        if (this.author != null) {
+            Map<String, String> authorMap = new HashMap<>();
+            if (this.author.getAuthor() != null) {
+                authorMap.put("name", this.author.getAuthor());
+            }
+            if (this.author.getUrl() != null) {
+                authorMap.put("url", this.author.getUrl());
+            }
+            if (this.author.getIconUrl() != null) {
+                authorMap.put("icon_url", this.author.getIconUrl());
+            }
+            
+            if (!authorMap.isEmpty()) {
+                embedMap.put("author", authorMap);
+            }
+        }
+
+        if (this.footer != null) {
+            Map<String, String> footerMap = new HashMap<>();
+            if (this.footer.getFooter() != null) {
+                footerMap.put("text", this.footer.getFooter());
+            }
+
+            if (this.footer.getIconUrl() != null) {
+                footerMap.put("icon_url", this.footer.getIconUrl());
+            }
+
+            // This actually doesnt go into the footer map, but rather the embed map itself.
+            // TODO: maybe separate this into a property of Embed object rather than Footer object?
+            if (this.footer.getTimestamp() != null) {
+                embedMap.put("timestamp", this.footer.getTimestamp());
+            }
+
+            if (!footerMap.isEmpty()) {
+                embedMap.put("footer", footerMap);
+            }
+        }
+
+        if (!embedMap.isEmpty()) {
+            // use gson to export this object to json
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            return gson.toJson(embedMap);
+        } else {
+            // Embed is empty, therefore can't convert to json.
+            // Other option would be to just return "{}", but I think null would be better for detection in code.
+            return null;
+        }
     }
 }
