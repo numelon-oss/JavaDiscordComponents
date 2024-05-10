@@ -124,15 +124,15 @@ public class Embed {
     // Json serialisation for export
     public String toJson() {
         Map<String, Object> embedMap = new HashMap<>();
-        if (this.title != null) {
+        if (this.title != null && !this.title.isBlank()) {
             embedMap.put("title", this.title);
         }
 
-        if (this.description != null) {
+        if (this.description != null && !this.description.isBlank()) {
             embedMap.put("description", this.description);
         }
 
-        if (this.url != null) {
+        if (this.url != null && !this.url.isBlank()) {
             embedMap.put("url", this.url);
         }
 
@@ -152,7 +152,7 @@ public class Embed {
             embedMap.put("fields", fieldsList);
         }
 
-        if (this.thumbnailUrl != null) {
+        if (this.thumbnailUrl != null && !this.thumbnailUrl.isBlank()) {
             Map<String, String> thumbnailMap = new HashMap<>();
             thumbnailMap.put("url", this.thumbnailUrl);
             embedMap.put("thumbnail", thumbnailMap);
@@ -160,13 +160,13 @@ public class Embed {
 
         if (this.author != null) {
             Map<String, String> authorMap = new HashMap<>();
-            if (this.author.getAuthor() != null) {
+            if (this.author.getAuthor() != null && !this.author.getAuthor().isBlank()) {
                 authorMap.put("name", this.author.getAuthor());
             }
-            if (this.author.getUrl() != null) {
+            if (this.author.getUrl() != null && !this.author.getUrl().isBlank()) {
                 authorMap.put("url", this.author.getUrl());
             }
-            if (this.author.getIconUrl() != null) {
+            if (this.author.getIconUrl() != null && !this.author.getIconUrl().isBlank()) {
                 authorMap.put("icon_url", this.author.getIconUrl());
             }
             
@@ -177,17 +177,17 @@ public class Embed {
 
         if (this.footer != null) {
             Map<String, String> footerMap = new HashMap<>();
-            if (this.footer.getFooter() != null) {
+            if (this.footer.getFooter() != null && !this.footer.getFooter().isBlank()) {
                 footerMap.put("text", this.footer.getFooter());
             }
 
-            if (this.footer.getIconUrl() != null) {
+            if (this.footer.getIconUrl() != null && !this.footer.getIconUrl().isBlank()) {
                 footerMap.put("icon_url", this.footer.getIconUrl());
             }
 
             // This actually doesnt go into the footer map, but rather the embed map itself.
             // TODO: maybe separate this into a property of Embed object rather than Footer object?
-            if (this.footer.getTimestamp() != null) {
+            if (this.footer.getTimestamp() != null && !this.footer.getTimestamp().isBlank()) {
                 embedMap.put("timestamp", this.footer.getTimestamp());
             }
 
