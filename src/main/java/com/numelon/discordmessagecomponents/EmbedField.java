@@ -9,7 +9,7 @@ public class EmbedField {
 
     public EmbedField(String title, String value, boolean inline) {
         if (title == null || value == null) {
-            throw IllegalArgumentException("Title and Value are mandatory arguments for EmbedField");
+            throw new IllegalArgumentException("Title and Value are mandatory arguments for EmbedField");
         } else {
             this.title = title;
             this.value = value;
