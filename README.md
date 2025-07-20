@@ -1,14 +1,13 @@
 # 🧱 DiscordMessageComponents
-Java Library for Discord message object creation
-A Java Library which allows you to create discord message-related objects:
-- Webhook Message
-- Embeds 💬
-    - Author 🧑🏻
-    - Body 📝
-    - Fields 🔖
-    - Images 🌆
-    - Footer ⏰
-- Attachments 🗂️
+DiscordMessageComponents is a Java library which allows you to create Discord message-related objects:
+- Webhook Messages
+- Embeds
+    - Author
+    - Body
+    - Fields
+    - Images
+    - Footer
+- Attachments
 
 ...and serialise them into JSON strings later!
 
@@ -16,7 +15,7 @@ Of course, you can manually construct a Java map for a discord webhook message /
 
 Also this is just a good opportunity for me to learn Java. ☕️
 
-## ✨ Using the library
+## Using the library
 Download the latest jar file from releases and place it in a new folder called `libs`. This folder should be inside the parent directory of your `src` folder and in the same directory where `build.gradle.kts` is located.
 
 Add the following dependency to your `build.gradle.kts` file:
@@ -26,7 +25,8 @@ dependencies {
 }
 ```
 
-The library is a fat jar which already includes the dependencies upon which this library depends on, so theres no need to manually import its dependencies such as Gson by Google.
+<!-- TODO: probably dont make it a fat jar? -->
+The library is a *"fat jar"* which already includes the dependencies upon which this library depends on, so theres no need to manually import its dependencies such as Gson by Google.
 
 ## ❓ null support
 This library currently does **NOT** have null support. You therefore cannot just provide null as an argument to the Embed constructor and expect it to work.
